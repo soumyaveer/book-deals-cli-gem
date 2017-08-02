@@ -13,12 +13,18 @@ module BookDeals
     end
 
     def start
+      user_has_quit = false
       until user_has_quit
         self.launch
       end
       user_has_quit = self.does_user_wants_to_quit?
     end
-    
+
+    def does_user_wants_to_quit?
+      self.input_output.say "Do you want to continue viewing deals?"
+      answer = self.input_output.ask
+      %w(n, no, exit).include?(answer.downcase)
+    end
 
     def greet_user
       self.input_output.say "Welcome to Book Deals"
