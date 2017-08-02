@@ -6,29 +6,27 @@ module BookDeals
       self.input_output = io
     end
 
-    def launch
-      self.greet_user
-      self.display_menu
-      self.select_category
-    end
-
     def start
       user_has_quit = false
+
       until user_has_quit
-        self.launch
+        self.greet_user
+        self.select_category
+        user_has_quit = self.does_user_wants_to_quit?
       end
-      user_has_quit = self.does_user_wants_to_quit?
     end
 
     def does_user_wants_to_quit?
       self.input_output.say "Do you want to continue viewing deals?"
       answer = self.input_output.ask
-      %w(n, no, exit).include?(answer.downcase)
+      %w(n no exit).include?(answer.downcase)
     end
 
     def greet_user
-      self.input_output.say "Welcome to Book Deals"
-      self.input_output.say "----------------------"
+      self.input_output.say "\n"
+      self.input_output.say "Welcome to Book Deals!!"
+      self.input_output.say "-----------------------"
+      self.input_output.say "\n"
     end
 
     def display_menu
@@ -42,22 +40,30 @@ module BookDeals
     end
 
     def select_category
+      self.display_menu
       category_choice = self.input_output.ask
       case category_choice
         when "1"
+          self.input_output.say "\n"
           self.input_output.say "You have selected ALL DEALS"
         when "2"
-          self.inout_output.say "You have selected BEST SELLERS"
+          self.input_output.say "\n"
+          self.input_output.say "You have selected BEST SELLERS"
         when "3"
+          self.input_output.say "\n"
           self.input_output.say "You have selected FICTION"
         when "4"
+          self.input_output.say "\n"
           self.input_output.say "You have selected BIOGRAPHIES"
         when "5"
+          self.input_output.say "\n"
           self.input_output.say "You have selected TECHNOLOGY"
         when "6"
+          self.input_output.say "\n"
           self.input_output.say "You have selected YOUNG ADULTS"
         else
-          self.input_output.say "Please select options 1 to 6"
+          self.input_output.say "\n"
+          self.input_output.say "Please select from options 1 to 6"
           raise "Wrong choice type"
       end
     end
