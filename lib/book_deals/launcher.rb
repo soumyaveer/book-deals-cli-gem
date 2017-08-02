@@ -8,7 +8,7 @@ module BookDeals
 
     def start
       self.greet_user
-      display_menu
+      self.display_menu
     end
 
     def greet_user
@@ -16,7 +16,7 @@ module BookDeals
       self.input_output.say "----------------------"
     end
 
-    def self.display_menu
+    def display_menu
       self.input_output.say "Select the Category for the deals:"
       self.input_output.say "1. All Deals (Press 1 to see All deals)"
       self.input_output.say "2. Best Sellers (Press 2 to see Best Sellers)"
