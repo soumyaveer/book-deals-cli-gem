@@ -23,14 +23,12 @@ module BookDeals
     end
 
     def greet_user
-      self.input_output.say "\n"
       self.input_output.say "Welcome to Book Deals!!"
-      self.input_output.say "-----------------------"
-      self.input_output.say "\n"
+      self.input_output.say "======================="
     end
 
     def display_menu
-      self.input_output.say "Select the Category for the deals:"
+      self.input_output.say "Select a Category for the deals:"
       self.input_output.say "1. All Deals (Press 1 to see All deals)"
       self.input_output.say "2. Best Sellers (Press 2 to see Best Sellers)"
       self.input_output.say "3. Fiction (Press 3 to see Fiction)"
@@ -44,25 +42,18 @@ module BookDeals
       category_choice = self.input_output.ask
       case category_choice
         when "1"
-          self.input_output.say "\n"
           self.input_output.say "You have selected ALL DEALS"
         when "2"
-          self.input_output.say "\n"
           self.input_output.say "You have selected BEST SELLERS"
         when "3"
-          self.input_output.say "\n"
           self.input_output.say "You have selected FICTION"
         when "4"
-          self.input_output.say "\n"
           self.input_output.say "You have selected BIOGRAPHIES"
         when "5"
-          self.input_output.say "\n"
           self.input_output.say "You have selected TECHNOLOGY"
         when "6"
-          self.input_output.say "\n"
           self.input_output.say "You have selected YOUNG ADULTS"
         else
-          self.input_output.say "\n"
           self.input_output.say "Please select from options 1 to 6"
           raise "Wrong choice type"
       end
