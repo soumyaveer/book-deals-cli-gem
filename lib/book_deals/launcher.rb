@@ -6,11 +6,19 @@ module BookDeals
       self.input_output = io
     end
 
-    def start
+    def launch
       self.greet_user
       self.display_menu
       self.select_category
     end
+
+    def start
+      until user_has_quit
+        self.launch
+      end
+      user_has_quit = self.does_user_wants_to_quit?
+    end
+    
 
     def greet_user
       self.input_output.say "Welcome to Book Deals"
