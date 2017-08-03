@@ -1,5 +1,3 @@
 require "book_deals/version"
-
-module BookDeals
-  # Your code goes here...
-end
+require_relative './book_deals/cli'
+require_relative './book_deals/launcher'
