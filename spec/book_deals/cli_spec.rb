@@ -5,7 +5,7 @@ describe BookDeals::CLI do
 
   describe "say" do
     it "displays the output to the user" do
-      true
+      allow($stdout).to receive(:puts)
     end
   end
 end
