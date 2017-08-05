@@ -11,26 +11,28 @@ module BookDeals
       Nokogiri::HTML(open(BOOK_DEALS_URL))
     end
 
-    def scrape_deals_url
-      categories_explorer = self.get_page.css(".gr-dealsCategoryExplorer .u-unstyledListItem li a")
-      categories_explorer.map do |category|
+    def scrape_categories_from_home_page
+      category_html_elements = self.get_page.css(".gr-dealsCategoryExplorer .u-unstyledListItem li a")
+      category_html_elements.map do |html_element|
         {
-         name: category.text,
-         category_url: category.attr("href")
+         name: html_element.text,
+         category_url: HOME_URL + html_element.attr("href")
         }
       end
     end
 
-    def generate_category_url
-      self.scrape_deals_url.each do |category|
-        category.each do |attribute, value|
-          category[attribute] =  HOME_URL + value if attribute == :category_url
-        end
+    def scrape_deals_from_category_page(category)
+      #1. scrape deals in books from category page
+      #class = "gr-deal"
+      #  class = '.gr-mediaBox__desc'
+      #    class = '.gr-book__title'
+      #      href = show link for book -element a
+      #  class="gr-book__author " ,element - a
+      #  class="gr-book__additionalContent"
+      #    categories - class="gr-deal__tag"
+      #    description - class = "gr-deal__blurb" - element span
+      #    price - class="deal__price__deal"
+      #    original_price - class="gr-deal__price__original"
       end
-    end
-
-    def scrape_category_deal_url
-
-    end
   end
 end
