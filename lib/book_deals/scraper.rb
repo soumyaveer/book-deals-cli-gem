@@ -20,6 +20,7 @@ module BookDeals
       Nokogiri::HTML(open(BOOK_DEALS_URL))
     end
 
+    # TODO: convert to objects instead of hash
     def scrape_categories_from_home_page
       category_html_elements = self.get_page.css(HOME_PAGE_HTML_ELEMENTS)
       category_html_elements.map do |html_element|
@@ -30,6 +31,7 @@ module BookDeals
       end
     end
 
+    # TODO: convert to objects instead of hash
     def scrape_deals_from_category_page
       deals_html_doc = Nokogiri::HTML(open("https://www.goodreads.com/ebook-deals/today-only-book-deals"))
       deals_html_elements = deals_html_doc.css(CATEGORY_PAGE_HTML_ELEMENTS)
