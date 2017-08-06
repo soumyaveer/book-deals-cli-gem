@@ -91,5 +91,14 @@ module BookDeals
       end
     end
 
+    def create_books(deal, count, category)
+      if deal
+        book = Book.new(deal)
+        book.title = @titles[count]
+        category.add_book(book)
+        book.author = @authors[count]
+        book.description = @descriptions[count]
+      end
+    end
   end
 end
