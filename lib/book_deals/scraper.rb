@@ -3,11 +3,11 @@ require "open-uri"
 require "pry"
 
 module BookDeals
-  attr_accessor :category
-
   class Scraper
+    attr_accessor :category
+
     HOME_URL = "https://www.goodreads.com"
-    BOOK_DEALS_URL = HOME_URL + "ebook-deals"
+    BOOK_DEALS_URL = HOME_URL + "/ebook-deals"
     HOME_PAGE_HTML_ELEMENTS = ".gr-dealsCategoryExplorer .u-unstyledListItem li a"
     CATEGORY_PAGE_HTML_ELEMENTS = ".gr-deals .visibleWide"
     DEALS_HTML_ELEMENT_TITLE = ".gr-book__title"
@@ -24,12 +24,11 @@ module BookDeals
 
     def scrape_categories_from_home_page
       category_html_elements = self.get_page.css(HOME_PAGE_HTML_ELEMENTS)
+      category_html_elements = category_html_elements.select {|html_element| html_element.text!= "Recommended for You"}
       category_html_elements.map do |html_element|
-        unless html_element.text == "Recommended for You"
-          self.category = Category.new
-          self.category.name =  html_element.text
-          self.category.url =  HOME_URL + html_element.attr("href")
-        end
+        category = Category.new(html_element.text)
+        category.url =  HOME_URL + html_element.attr("href")
+        category
       end
     end
 

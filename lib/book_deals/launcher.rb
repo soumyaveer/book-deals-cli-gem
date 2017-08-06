@@ -10,16 +10,10 @@ module BookDeals
 
     def display_menu
       self.input_output.say "Select a Category for the deals:"
-      # self.input_output.say "1. All Deals (Press 1 to see All deals)"
-      # self.input_output.say "2. Best Sellers (Press 2 to see Best Sellers)"
-      # self.input_output.say "3. Fiction (Press 3 to see Fiction)"
-      # self.input_output.say "4. Biographies (Press 4 to see Biographies)"
-      # self.input_output.say "5. Technology (Press 5 to see Technology)"
-      # self.input_output.say "6. Young Adults (Press 6 to see Young Adults)"
-      @categories = self.scraper.scrape_categories_from_home_page
-      @categories.each_with_index do |index, category|
-        number = index + 1
-        self.input_output.say "#{number}. #{category.name} (Press #{number} to see #{category.name}"
+      categories = scraper.scrape_categories_from_home_page
+      categories.each_with_index do |category, index|
+        category_number = index + 1
+        self.input_output.say "#{category_number}. #{category.name} (Press #{category_number} to see #{category.name})"
       end
     end
 
