@@ -46,5 +46,13 @@ module BookDeals
       end
       category
     end
+
+    private
+
+    def deal_prices(html_element)
+      prices = html_element.css(DEALS_HTML_ELEMENT_DEAL_PRICE)
+      prices.map { |price| price.text }
+    end
+
   end
 end
