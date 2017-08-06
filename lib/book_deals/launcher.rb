@@ -46,23 +46,27 @@ module BookDeals
     def select_category
       self.display_menu
       category_choice = self.input_output.ask
-      case category_choice
-        when "1"
-          self.input_output.say "You have selected ALL DEALS"
-        when "2"
-          self.input_output.say "You have selected BEST SELLERS"
-        when "3"
-          self.input_output.say "You have selected FICTION"
-        when "4"
-          self.input_output.say "You have selected BIOGRAPHIES"
-        when "5"
-          self.input_output.say "You have selected TECHNOLOGY"
-        when "6"
-          self.input_output.say "You have selected YOUNG ADULTS"
-        else
-          self.input_output.say "Please select from options 1 to 6"
-          raise "Wrong choice type"
-      end
+      category = @categories[category_choice.to_i -1]
+      scraper.scrape_deals_from_category_page(category)
+
+
+      # case category_choice
+      #   when "1"
+      #     self.input_output.say "You have selected ALL DEALS"
+      #   when "2"
+      #     self.input_output.say "You have selected BEST SELLERS"
+      #   when "3"
+      #     self.input_output.say "You have selected FICTION"
+      #   when "4"
+      #     self.input_output.say "You have selected BIOGRAPHIES"
+      #   when "5"
+      #     self.input_output.say "You have selected TECHNOLOGY"
+      #   when "6"
+      #     self.input_output.say "You have selected YOUNG ADULTS"
+      #   else
+      #     self.input_output.say "Please select from options 1 to 6"
+      #     raise "Wrong choice type"
+      # end
     end
   end
 end
