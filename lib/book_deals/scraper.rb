@@ -59,5 +59,15 @@ module BookDeals
       original_prices.map {|original_price| original_price.text}
     end
 
+    def expires_in(html_element)
+      expiration_dates = html_element.css(DEALS_HTML_ELEMENT_DATETIME)
+      expiration_dates.map {|datetime| datetime.text}.map {|time| time.split(" ").drop(2).join(" ")}
+    end
+
+    def book_titles(html_element)
+      titles = html_element.css(DEALS_HTML_ELEMENT_TITLE)
+      titles.map {|title| title.text}
+    end
+
   end
 end
