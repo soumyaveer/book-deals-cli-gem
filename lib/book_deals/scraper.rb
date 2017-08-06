@@ -79,5 +79,16 @@ module BookDeals
       descriptions.map {|description| description.text}
     end
 
+    def create_deals(category)
+      count = 0
+      until count == @prices.count
+        deal = Deal.new
+        deal.price = @prices[count]
+        deal.original_price = @original_prices[count]
+        deal.expires_in = @expiration_dates[count]
+        count += 1
+      end
+    end
+
   end
 end
