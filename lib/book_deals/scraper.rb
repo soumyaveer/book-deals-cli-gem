@@ -73,5 +73,11 @@ module BookDeals
       authors = html_element.css(DEALS_HTML_ELEMENT_AUTHOR)
       authors.map {|author| author.text}
     end
+
+    def book_descriptions(html_element)
+      descriptions = html_element.css(DEALS_HTML_ELEMENT_DESCRIPTION)
+      descriptions.map {|description| description.text}
+    end
+
   end
 end
