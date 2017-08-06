@@ -64,7 +64,9 @@ module BookDeals
         self.input_output.say "Original Price: #{book.deal.original_price}"
         self.input_output.say "Expires in: #{book.deal.expires_in}"
       end
+      self.input_output.say "==========================="
       self.input_output.say "Total #{number_of_deals} deals found!"
+      self.input_output.say "==========================="
     end
   end
 end
