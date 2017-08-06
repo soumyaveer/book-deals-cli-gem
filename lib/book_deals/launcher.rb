@@ -17,6 +17,10 @@ module BookDeals
       # self.input_output.say "5. Technology (Press 5 to see Technology)"
       # self.input_output.say "6. Young Adults (Press 6 to see Young Adults)"
       @categories = self.scraper.scrape_categories_from_home_page
+      @categories.each_with_index do |index, category|
+        number = index + 1
+        self.input_output.say "#{number}. #{category.name} (Press #{number} to see #{category.name}"
+      end
     end
 
     def greet_user
