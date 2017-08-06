@@ -35,18 +35,8 @@ module BookDeals
     def scrape_deals_from_category_page(category)
       deals_html_doc = Nokogiri::HTML(open(category.url))
       deals_html_elements = deals_html_doc.css(CATEGORY_PAGE_HTML_ELEMENTS)
-
       deals_html_elements.each do |html_element|
-        deal = Deal.new
-        book = Book.new(deal)
-        book.title = html_element.css(DEALS_HTML_ELEMENT_TITLE).text
-        category.add_book(book)
-        book.author = html_element.css(DEALS_HTML_ELEMENT_AUTHOR).text
-        book.description = html_element.css(DEALS_HTML_ELEMENT_DESCRIPTION).text
-
-        deal.price = html_element.css(DEALS_HTML_ELEMENT_DEAL_PRICE).text
-        deal.original_price = html_element.css(DEALS_HTML_ELEMENT_ORIGINAL_PRICE).text
-        deal.expires_in = html_element.css(DEALS_HTML_ELEMENT_DATETIME).text.split(" ").drop(1).join(" ")
+        
       end
       category
     end
