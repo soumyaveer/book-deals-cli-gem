@@ -1,6 +1,6 @@
 module BookDeals
   class Launcher
-    attr_accessor :input_output
+    attr_accessor :input_output, :scraper
 
     def does_user_wants_to_quit?
       self.input_output.say "Do you want to continue viewing deals?"
@@ -10,12 +10,13 @@ module BookDeals
 
     def display_menu
       self.input_output.say "Select a Category for the deals:"
-      self.input_output.say "1. All Deals (Press 1 to see All deals)"
-      self.input_output.say "2. Best Sellers (Press 2 to see Best Sellers)"
-      self.input_output.say "3. Fiction (Press 3 to see Fiction)"
-      self.input_output.say "4. Biographies (Press 4 to see Biographies)"
-      self.input_output.say "5. Technology (Press 5 to see Technology)"
-      self.input_output.say "6. Young Adults (Press 6 to see Young Adults)"
+      # self.input_output.say "1. All Deals (Press 1 to see All deals)"
+      # self.input_output.say "2. Best Sellers (Press 2 to see Best Sellers)"
+      # self.input_output.say "3. Fiction (Press 3 to see Fiction)"
+      # self.input_output.say "4. Biographies (Press 4 to see Biographies)"
+      # self.input_output.say "5. Technology (Press 5 to see Technology)"
+      # self.input_output.say "6. Young Adults (Press 6 to see Young Adults)"
+      @categories = self.scraper.scrape_categories_from_home_page
     end
 
     def greet_user
@@ -23,8 +24,9 @@ module BookDeals
       self.input_output.say "======================="
     end
 
-    def initialize(io = CLI.new)
+    def initialize(io = CLI.new, scraper = Scraper.new)
       self.input_output = io
+      self.scraper = scraper
     end
 
     def start
