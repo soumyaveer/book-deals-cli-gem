@@ -46,27 +46,24 @@ module BookDeals
     def select_category
       self.display_menu
       category_choice = self.input_output.ask
-      category = @categories[category_choice.to_i -1]
-      scraper.scrape_deals_from_category_page(category)
 
+      if category_choice.to_i.between(1, 9)
+        category_name = @categories[category_choice.to_i - 1]
+        @category = scraper.scrape_deals_from_category_page(category_name)
+        self.input_output.say "Deals on #{@category.name}"
 
-      # case category_choice
-      #   when "1"
-      #     self.input_output.say "You have selected ALL DEALS"
-      #   when "2"
-      #     self.input_output.say "You have selected BEST SELLERS"
-      #   when "3"
-      #     self.input_output.say "You have selected FICTION"
-      #   when "4"
-      #     self.input_output.say "You have selected BIOGRAPHIES"
-      #   when "5"
-      #     self.input_output.say "You have selected TECHNOLOGY"
-      #   when "6"
-      #     self.input_output.say "You have selected YOUNG ADULTS"
-      #   else
-      #     self.input_output.say "Please select from options 1 to 6"
-      #     raise "Wrong choice type"
-      # end
+        @category.books.each do |book|
+          self.input_output.say "Book Title: #{book.title}"
+          self.input_output.say "Author: #{book.author}"
+          self.input_output.say "Description: #{book.description}"
+          self.input_output.say "Deal Price: #{book.deal.price}"
+          self.input_output.say "Original Price: #{book.deal.original_price}"
+          self.input_output.say "Expires in: #{book.deal.expires_in}"
+        end
+      else
+        self.input_output.say "Please select from options 1 to 9"
+        raise "Wrong choice type"
+      end
     end
   end
 end

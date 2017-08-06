@@ -49,7 +49,7 @@ module BookDeals
         deal.original_price = html_element.css(DEALS_HTML_ELEMENT_ORIGINAL_PRICE).text
         deal.expires_in = html_element.css(DEALS_HTML_ELEMENT_DATETIME).text.split(" ").drop(1).join(" ")
       end
-
+      category
     end
   end
 end
