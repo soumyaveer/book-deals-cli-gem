@@ -54,5 +54,10 @@ module BookDeals
       prices.map { |price| price.text }
     end
 
+    def original_prices(html_element)
+      original_prices = html_element.css(DEALS_HTML_ELEMENT_ORIGINAL_PRICE)
+      original_prices.map {|original_price| original_price.text}
+    end
+
   end
 end
