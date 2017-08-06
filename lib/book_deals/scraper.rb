@@ -36,7 +36,13 @@ module BookDeals
       deals_html_doc = Nokogiri::HTML(open(category.url))
       deals_html_elements = deals_html_doc.css(CATEGORY_PAGE_HTML_ELEMENTS)
       deals_html_elements.each do |html_element|
-
+        @prices = deal_prices(html_element)
+        @original_prices = original_prices(html_element)
+        @expiration_dates = expires_in(html_element)
+        @titles = book_titles(html_element)
+        @authors = book_authors(html_element)
+        @descriptions = book_descriptions(html_element)
+        create_deals(category)
       end
       category
     end
