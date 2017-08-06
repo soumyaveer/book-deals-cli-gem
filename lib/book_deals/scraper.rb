@@ -86,7 +86,7 @@ module BookDeals
         deal.price = @prices[count]
         deal.original_price = @original_prices[count]
         deal.expires_in = @expiration_dates[count]
-        create_book(deal, count, category)
+        create_books(deal, count, category)
         count += 1
       end
     end
