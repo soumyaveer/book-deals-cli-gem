@@ -6,7 +6,7 @@ module BookDeals
       self.books << book
       book.categories << self
     end
-    
+
     def initialize(name)
       self.name = name
       self.books = []

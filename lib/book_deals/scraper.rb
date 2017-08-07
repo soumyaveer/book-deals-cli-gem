@@ -4,7 +4,6 @@ require "pry"
 
 module BookDeals
   class Scraper
-    attr_accessor :category
 
     HOME_URL = "https://www.goodreads.com"
     BOOK_DEALS_URL = HOME_URL + "/ebook-deals"
@@ -49,26 +48,6 @@ module BookDeals
 
     private
 
-    def deal_prices(html_element)
-      prices = html_element.css(DEALS_HTML_ELEMENT_DEAL_PRICE)
-      prices.map { |price| price.text }
-    end
-
-    def original_prices(html_element)
-      original_prices = html_element.css(DEALS_HTML_ELEMENT_ORIGINAL_PRICE)
-      original_prices.map {|original_price| original_price.text}
-    end
-
-    def expires_in(html_element)
-      expiration_dates = html_element.css(DEALS_HTML_ELEMENT_DATETIME)
-      expiration_dates.map {|datetime| datetime.text}.map {|time| time.split(" ").drop(2).join(" ")}
-    end
-
-    def book_titles(html_element)
-      titles = html_element.css(DEALS_HTML_ELEMENT_TITLE)
-      titles.map {|title| title.text}
-    end
-
     def book_authors(html_element)
       authors = html_element.css(DEALS_HTML_ELEMENT_AUTHOR)
       authors.map {|author| author.text}
@@ -77,6 +56,21 @@ module BookDeals
     def book_descriptions(html_element)
       descriptions = html_element.css(DEALS_HTML_ELEMENT_DESCRIPTION)
       descriptions.map {|description| description.text}
+    end
+
+    def book_titles(html_element)
+      titles = html_element.css(DEALS_HTML_ELEMENT_TITLE)
+      titles.map {|title| title.text}
+    end
+
+    def create_books(deal, count, category)
+      if deal
+        book = Book.new(deal)
+        book.title = @titles[count]
+        category.add_book(book)
+        book.author = @authors[count]
+        book.description = @descriptions[count]
+      end
     end
 
     def create_deals(category)
@@ -91,14 +85,19 @@ module BookDeals
       end
     end
 
-    def create_books(deal, count, category)
-      if deal
-        book = Book.new(deal)
-        book.title = @titles[count]
-        category.add_book(book)
-        book.author = @authors[count]
-        book.description = @descriptions[count]
-      end
+    def deal_prices(html_element)
+      prices = html_element.css(DEALS_HTML_ELEMENT_DEAL_PRICE)
+      prices.map { |price| price.text }
+    end
+
+    def expires_in(html_element)
+      expiration_dates = html_element.css(DEALS_HTML_ELEMENT_DATETIME)
+      expiration_dates.map {|datetime| datetime.text}.map {|time| time.split(" ").drop(2).join(" ")}
+    end
+
+    def original_prices(html_element)
+      original_prices = html_element.css(DEALS_HTML_ELEMENT_ORIGINAL_PRICE)
+      original_prices.map {|original_price| original_price.text}
     end
   end
 end

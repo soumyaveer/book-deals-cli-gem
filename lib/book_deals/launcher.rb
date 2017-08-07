@@ -27,6 +27,24 @@ module BookDeals
       self.scraper = scraper
     end
 
+    def print_deals
+      self.input_output.say "Deals - #{@category.name}"
+      self.input_output.say "--------------------------"
+      number_of_deals = @category.books.count
+      @category.books.each do |book|
+        self.input_output.say "-----------"
+        self.input_output.say "Book Title: #{book.title}"
+        self.input_output.say "Author: #{book.author}"
+        self.input_output.say "Description: #{book.description}"
+        self.input_output.say "Deal Price: #{book.deal.price}"
+        self.input_output.say "Original Price: #{book.deal.original_price}"
+        self.input_output.say "Expires in: #{book.deal.expires_in}"
+      end
+      self.input_output.say "==========================="
+      self.input_output.say "Total #{number_of_deals} deals found!"
+      self.input_output.say "==========================="
+    end
+
     def start
       user_has_quit = false
 
@@ -44,29 +62,11 @@ module BookDeals
       if category_choice.to_i.between?(1, 8)
         category_name = @categories[category_choice.to_i - 1]
         @category= scraper.scrape_deals_from_category_page(category_name)
-        self.print_category_deal_details
+        self.print_deals
       else
         self.input_output.say "Please select from options 1 to 9"
         raise "Wrong choice type"
       end
-    end
-
-    def print_category_deal_details
-      self.input_output.say "Deals - #{@category.name}"
-      self.input_output.say "--------------------------"
-      number_of_deals = @category.books.count
-      @category.books.each do |book|
-        self.input_output.say "-----------"
-        self.input_output.say "Book Title: #{book.title}"
-        self.input_output.say "Author: #{book.author}"
-        self.input_output.say "Description: #{book.description}"
-        self.input_output.say "Deal Price: #{book.deal.price}"
-        self.input_output.say "Original Price: #{book.deal.original_price}"
-        self.input_output.say "Expires in: #{book.deal.expires_in}"
-      end
-      self.input_output.say "==========================="
-      self.input_output.say "Total #{number_of_deals} deals found!"
-      self.input_output.say "==========================="
     end
   end
 end
