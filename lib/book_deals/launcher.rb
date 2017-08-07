@@ -32,17 +32,20 @@ module BookDeals
       self.input_output.say "--------------------------"
       number_of_deals = @category.books.count
       @category.books.each do |book|
-        self.input_output.say "-----------"
-        self.input_output.say "Book Title: #{book.title}"
-        self.input_output.say "Author: #{book.author}"
-        self.input_output.say "Description: #{book.description}"
-        self.input_output.say "Deal Price: #{book.deal.price}"
-        self.input_output.say "Original Price: #{book.deal.original_price}"
-        self.input_output.say "Expires in: #{book.deal.expires_in}"
+        self.print_deal_details_for_book(book)
       end
       self.input_output.say "==========================="
-      self.input_output.say "Total #{number_of_deals} deals found!"
+      self.input_output.say "Total #{number_of_deals} deal/deals found!"
       self.input_output.say "==========================="
+    end
+
+    def print_deal_details_for_book(book)
+      self.input_output.say "Book Title: #{book.title}"
+      self.input_output.say "Author: #{book.author}"
+      self.input_output.say "Description: #{book.description}"
+      self.input_output.say "Deal Price: #{book.deal.price}"
+      self.input_output.say "Original Price: #{book.deal.original_price}"
+      self.input_output.say "Expires in: #{book.deal.expires_in}"
     end
 
     def start
