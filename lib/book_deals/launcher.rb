@@ -28,11 +28,12 @@ module BookDeals
     end
 
     def display_deals
-      self.input_output.say "Deals - #{@category.name}"
+      self.input_output.say "Deals For - #{@category.name}"
       self.input_output.say "--------------------------"
       @category.books.each do |book|
         self.display_deal_details_for_each(book)
       end
+
       self.display_total_book_deals_in_category
     end
 
@@ -43,13 +44,13 @@ module BookDeals
       self.input_output.say "Deal Price: #{book.deal.price}"
       self.input_output.say "Original Price: #{book.deal.original_price}"
       self.input_output.say "Expires in: #{book.deal.expires_in}"
-      self.input_output.say "==========================="
-
+      self.input_output.say "=============================================================================="
     end
 
+
     def display_total_book_deals_in_category
-      self.input_output.say "Total #{@category.books.count} deal/deals found!"
-      self.input_output.say "==========================="
+      self.input_output.say "Total #{@category.books.count} deal/deals found for category #{@category.name}."
+      self.input_output.say "=============================================================================="
     end
 
     def start

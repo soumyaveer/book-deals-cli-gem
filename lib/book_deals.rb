@@ -8,3 +8,4 @@ require_relative './book_deals/deal'
 require "nokogiri"
 require "open-uri"
 require "pry"
+
