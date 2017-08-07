@@ -5,6 +5,7 @@ require_relative './book_deals/scraper'
 require_relative './book_deals/category'
 require_relative './book_deals/book'
 require_relative './book_deals/deal'
+require 'colorize'
 require "nokogiri"
 require "open-uri"
 require "pry"
