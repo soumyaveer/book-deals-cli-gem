@@ -18,8 +18,8 @@ module BookDeals
     end
 
     def scrape_categories_from_home_page
-      category_html_elements = self.get_page.css(HOME_PAGE_HTML_ELEMENTS)
-      category_html_elements = category_html_elements.select {|html_element| html_element.text!= "Recommended for You"}
+      all_category_html_elements = self.get_page.css(HOME_PAGE_HTML_ELEMENTS)
+      category_html_elements = select_category_html_elements(all_category_html_elements)
       category_html_elements.map do |html_element|
         category = Category.new(html_element.text)
         category.url =  HOME_URL + html_element.attr("href")
@@ -94,6 +94,10 @@ module BookDeals
     def original_prices(html_element)
       original_prices = html_element.css(DEALS_HTML_ELEMENT_ORIGINAL_PRICE)
       original_prices.map {|original_price| original_price.text}
+    end
+
+    def select_category_html_elements(all_category_html_elements)
+      all_category_html_elements.select {|html_element| html_element.text!= "Recommended for You"}
     end
   end
 end
