@@ -2,7 +2,7 @@ module BookDeals
   class CLI
     def ask
       puts "\n"
-      self.say("Enter your selection:")
+      self.say("Enter your selection:".colorize(:blue))
       gets.chomp
     end
 

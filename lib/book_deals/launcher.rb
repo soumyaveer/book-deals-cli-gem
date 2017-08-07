@@ -3,13 +3,13 @@ module BookDeals
     attr_accessor :input_output, :scraper
 
     def does_user_wants_to_quit?
-      self.input_output.say "Do you want to continue viewing deals?"
+      self.input_output.say "Do you want to continue viewing deals?".colorize(:blue)
       answer = self.input_output.ask
       %w(n no exit).include?(answer.downcase)
     end
 
     def display_menu
-      self.input_output.say "Select a Category for the deals:"
+      self.input_output.say "Select a Category to see the deals:".colorize(:blue)
       @categories = scraper.scrape_categories_from_home_page
       @categories.each_with_index do |category, index|
         category_number = index + 1
@@ -18,8 +18,8 @@ module BookDeals
     end
 
     def greet_user
-      self.input_output.say "Welcome to Book Deals!!"
-      self.input_output.say "======================="
+      self.input_output.say "Welcome to Book Deals!!".colorize(:green)
+      self.input_output.say "=======================".colorize(:green)
     end
 
     def initialize(io = CLI.new, scraper = Scraper.new)
@@ -28,8 +28,8 @@ module BookDeals
     end
 
     def display_deals
-      self.input_output.say "Deals For - #{@category.name}"
-      self.input_output.say "--------------------------"
+      self.input_output.say "Deals for Category - #{@category.name}".colorize(:green)
+      self.input_output.say "--------------------------------------".colorize(:green)
       @category.books.each do |book|
         self.display_deal_details_for_each(book)
       end
@@ -38,18 +38,18 @@ module BookDeals
     end
 
     def display_deal_details_for_each(book)
-      self.input_output.say "Book Title: #{book.title}"
-      self.input_output.say "Author: #{book.author}"
-      self.input_output.say "Description: #{book.description}"
-      self.input_output.say "Deal Price: #{book.deal.price}"
-      self.input_output.say "Original Price: #{book.deal.original_price}"
-      self.input_output.say "Expires in: #{book.deal.expires_in}"
+      self.input_output.say "Book Title:".colorize(:yellow) + " #{book.title}"
+      self.input_output.say "Author:".colorize(:yellow) + " #{book.author}"
+      self.input_output.say "Description:".colorize(:yellow) + " #{book.description}"
+      self.input_output.say "Deal Price:".colorize(:yellow) + " #{book.deal.price}"
+      self.input_output.say "Original Price:".colorize(:yellow) + " #{book.deal.original_price}"
+      self.input_output.say "Expires in:".colorize(:yellow) + " #{book.deal.expires_in}"
       self.input_output.say "=============================================================================="
     end
 
 
     def display_total_book_deals_in_category
-      self.input_output.say "Total #{@category.books.count} deal/deals found for category #{@category.name}."
+      self.input_output.say "Total #{@category.books.count} deal/deals found for category #{@category.name}.".colorize(:green)
       self.input_output.say "=============================================================================="
     end
 
