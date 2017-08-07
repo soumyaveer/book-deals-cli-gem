@@ -27,25 +27,29 @@ module BookDeals
       self.scraper = scraper
     end
 
-    def print_deals
+    def display_deals
       self.input_output.say "Deals - #{@category.name}"
       self.input_output.say "--------------------------"
-      number_of_deals = @category.books.count
       @category.books.each do |book|
-        self.print_deal_details_for_book(book)
+        self.display_deal_details_for_each(book)
       end
-      self.input_output.say "==========================="
-      self.input_output.say "Total #{number_of_deals} deal/deals found!"
-      self.input_output.say "==========================="
+      self.display_total_book_deals_in_category
     end
 
-    def print_deal_details_for_book(book)
+    def display_deal_details_for_each(book)
       self.input_output.say "Book Title: #{book.title}"
       self.input_output.say "Author: #{book.author}"
       self.input_output.say "Description: #{book.description}"
       self.input_output.say "Deal Price: #{book.deal.price}"
       self.input_output.say "Original Price: #{book.deal.original_price}"
       self.input_output.say "Expires in: #{book.deal.expires_in}"
+      self.input_output.say "==========================="
+
+    end
+
+    def display_total_book_deals_in_category
+      self.input_output.say "Total #{@category.books.count} deal/deals found!"
+      self.input_output.say "==========================="
     end
 
     def start
@@ -65,7 +69,7 @@ module BookDeals
       if category_choice.to_i.between?(1, 8)
         category_name = @categories[category_choice.to_i - 1]
         @category= scraper.scrape_deals_from_category_page(category_name)
-        self.print_deals
+        self.display_deals
       else
         self.input_output.say "Please select from options 1 to 9"
         raise "Wrong choice type"
