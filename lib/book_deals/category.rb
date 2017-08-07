@@ -2,9 +2,8 @@ module BookDeals
   class Category
     attr_accessor :name, :url, :books
 
-    def initialize(name, url = nil)
+    def initialize(name)
       self.name = name
-      self.url = url
       self.books = []
     end
 
