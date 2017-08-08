@@ -33,6 +33,17 @@ module BookDeals
       deals_html_elements = deals_html_doc.css(CATEGORY_PAGE_HTML_ELEMENTS)
 
       deals_html_elements.each do |html_element|
+        price = html_element.css(DEALS_HTML_ELEMENT_DEAL_PRICE).text
+        original_price = html_element.css(DEALS_HTML_ELEMENT_ORIGINAL_PRICE).text
+        expires_in = html_element.css(DEALS_HTML_ELEMENT_DATETIME).text.split(" ").drop(2).join(" ")
+
+        deal = Deal.new(price, original_price, expires_in)
+        title = html_element.css(DEALS_HTML_ELEMENT_TITLE).text
+        author = html_element.css(DEALS_HTML_ELEMENT_AUTHOR).text
+        description = html_element.css(DEALS_HTML_ELEMENT_DESCRIPTION).text
+
+        book = Book.new(deal, title, author, description)
+        category.add_book(book)
       end
       category
     end
