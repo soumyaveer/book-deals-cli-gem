@@ -25,6 +25,8 @@ module BookDeals
     def initialize(io = CLI.new, scraper = Scraper.new)
       self.input_output = io
       self.scraper = scraper
+      @categories = []
+      @category = nil
     end
 
     def display_deals
