@@ -7,8 +7,9 @@ module BookDeals
       book.categories << self
     end
 
-    def initialize(name)
+    def initialize(name, url)
       self.name = name
+      self.url = url
       self.books = []
     end
   end

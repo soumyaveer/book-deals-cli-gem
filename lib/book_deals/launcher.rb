@@ -1,6 +1,6 @@
 module BookDeals
   class Launcher
-    attr_accessor :input_output, :scraper
+    attr_accessor :input_output, :scraper, :category
 
     def does_user_wants_to_quit?
       self.input_output.say "Do you want to continue viewing deals?".colorize(:blue)
@@ -10,7 +10,7 @@ module BookDeals
 
     def display_menu
       self.input_output.say "Select a Category to see the deals:".colorize(:blue)
-      @categories = scraper.scrape_categories_from_home_page
+      @categories = self.scraper.scrape_categories_from_home_page
       @categories.each_with_index do |category, index|
         category_number = index + 1
         self.input_output.say "#{category_number}. #{category.name} (Press #{category_number} to see #{category.name})"
@@ -31,22 +31,11 @@ module BookDeals
       self.input_output.say "Deals for Category - #{@category.name}".colorize(:green)
       self.input_output.say "--------------------------------------".colorize(:green)
       @category.books.each do |book|
-        self.display_deal_details_for_each(book)
+        self.input_output.say book.to_s
       end
 
       self.display_total_book_deals_in_category
     end
-
-    def display_deal_details_for_each(book)
-      self.input_output.say "Book Title:".colorize(:yellow) + " #{book.title}"
-      self.input_output.say "Author:".colorize(:yellow) + " #{book.author}"
-      self.input_output.say "Description:".colorize(:yellow) + " #{book.description}"
-      self.input_output.say "Deal Price:".colorize(:yellow) + " #{book.deal.price}"
-      self.input_output.say "Original Price:".colorize(:yellow) + " #{book.deal.original_price}"
-      self.input_output.say "Expires in:".colorize(:yellow) + " #{book.deal.expires_in}"
-      self.input_output.say "=============================================================================="
-    end
-
 
     def display_total_book_deals_in_category
       self.input_output.say "Total #{@category.books.count} deal/deals found for category #{@category.name}.".colorize(:green)
@@ -67,9 +56,10 @@ module BookDeals
     def select_category
       category_choice = self.input_output.ask
 
-      if category_choice.to_i.between?(1, 8)
+      if category_choice.to_i.between?(1, @categories.count)
         category_name = @categories[category_choice.to_i - 1]
-        @category= scraper.scrape_deals_from_category_page(category_name)
+
+        @category = self.scraper.scrape_deals_from_category_page(category_name)
         self.display_deals
       else
         self.input_output.say "Please select from options 1 to 9"
