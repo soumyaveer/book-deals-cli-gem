@@ -19,19 +19,6 @@ module BookDeals
       end
     end
 
-    def greet_user
-      self.input_output.say "Welcome to Book Deals!!".colorize(:green)
-      self.input_output.say "=======================".colorize(:green)
-    end
-
-    def initialize(io = CLI.new, scraper = Scraper.new)
-      self.input_output = io
-      self.scraper = scraper
-      @categories = []
-
-      @selected_category = nil
-    end
-
     def display_deals
       self.input_output.say "Deals for Category - #{@selected_category.name}".colorize(:green)
       self.input_output.say "--------------------------------------".colorize(:green)
@@ -47,8 +34,21 @@ module BookDeals
       self.input_output.say "=============================================================================="
     end
 
+    def greet_user
+      self.input_output.say "Welcome to Book Deals!!".colorize(:green)
+      self.input_output.say "=======================".colorize(:green)
+    end
+
     def good_bye
       self.input_output.say "Thank you for visiting BookDeals. Hope to see you soon. Goodbye!".colorize(:green)
+    end
+
+    def initialize(io = CLI.new, scraper = Scraper.new)
+      self.input_output = io
+      self.scraper = scraper
+      @categories = []
+
+      @selected_category = nil
     end
 
     def start

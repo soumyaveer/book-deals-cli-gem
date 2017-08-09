@@ -9,6 +9,5 @@ module BookDeals
       self.original_price = original_price
       self.expires_in = expires_in
     end
-
   end
 end
