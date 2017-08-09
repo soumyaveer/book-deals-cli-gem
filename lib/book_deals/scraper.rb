@@ -13,6 +13,7 @@ module BookDeals
     DEALS_HTML_ELEMENT_ORIGINAL_PRICE = ".gr-deal__price__original strike"
     DEALS_HTML_ELEMENT_DATETIME = ".gr-deal__expirationDate"
 
+    # this method name is too generic. it doesn't say which page it is opening. this is important since there are multiple pages
     def get_page
       Nokogiri::HTML(open(BOOK_DEALS_URL))
     end

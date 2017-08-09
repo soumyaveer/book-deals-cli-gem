@@ -11,7 +11,7 @@ module BookDeals
     end
 
     def to_s
-      <<~DETAILS
+      <<-DETAILS.gsub /^ */, ''
       #{"Book Title:".colorize(:yellow)} #{self.title} \n
       #{"Author:".colorize(:yellow)}  #{self.author} \n
       #{"Description:".colorize(:yellow)} #{self.description} \n
@@ -21,6 +21,5 @@ module BookDeals
       ==============================================================================
       DETAILS
     end
-
   end
 end
