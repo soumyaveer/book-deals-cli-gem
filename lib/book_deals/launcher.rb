@@ -47,6 +47,10 @@ module BookDeals
       self.input_output.say "=============================================================================="
     end
 
+    def good_bye
+      self.input_output.say "Thank you for visiting BookDeals. Hope to see you soon. Goodbye!".colorize(:green)
+    end
+
     def start
       loop do
         self.greet_user
@@ -54,6 +58,7 @@ module BookDeals
         self.select_category
         break if self.does_user_wants_to_quit?
       end
+      self.good_bye
     end
 
     def select_category
