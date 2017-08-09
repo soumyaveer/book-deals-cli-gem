@@ -65,12 +65,13 @@ module BookDeals
         @selected_category = self.scraper.scrape_deals_from_category_page(category)
         self.display_deals
       else
-        self.input_output.say "Please select from options 1 to #{number_of_categories}".colorize(:red)
-        self.redisplay_options
+       self.wrong_choice_selection
       end
     end
 
-    def redisplay_options
+    def wrong_choice_selection
+      self.input_output.say "The category selected is not present!".colorize(:red)
+      self.input_output.say "Please select from options 1 to #{number_of_categories}".colorize(:red)
       self.display_menu
       self.select_category
     end
