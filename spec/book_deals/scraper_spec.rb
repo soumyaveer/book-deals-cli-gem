@@ -17,14 +17,12 @@ describe BookDeals::Scraper do
     end
 
     it "scrapes all categories from the deals page" do
-      # categories = scraper.scrape_categories_from_home_page
 
       expect(@categories.count).to eql(8)
     end
 
     it "scrapes all the categories names" do
       category_names = []
-      # categories = scraper.scrape_categories_from_home_page
       @categories.each {|category| category_names << category.name}
 
       expect(category_names).to match_array(["Today Only!", "Bestsellers", "Romance", "Mystery & Thrillers", "Fantasy & Science Fiction", "Fiction", "Nonfiction", "Young Adult" ])
@@ -32,7 +30,6 @@ describe BookDeals::Scraper do
 
     it "scrapes all the category urls" do
       category_urls = []
-      # categories = scraper.scrape_categories_from_home_page
       @categories.each {|category| category_urls << category.url}
 
       expect(category_urls).to match_array(["https://www.goodreads.com/ebook-deals/today-only-book-deals",
@@ -75,7 +72,7 @@ describe BookDeals::Scraper do
                                           "Battle for Atlantis (Atlantis, #6)"])
     end
 
-    it "scrapes all deals on the books" do
+    it "scrapes all deals related to the books" do
       deals = []
 
       @selected_category.books.each do |book|
