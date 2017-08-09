@@ -12,5 +12,5 @@ require "open-uri"
 begin
   require "pry"
 rescue LoadError
-  # ignore exception
+  # ignore exception as in production environment
 end

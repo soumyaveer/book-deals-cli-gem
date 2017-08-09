@@ -1,6 +1,8 @@
 module BookDeals
+  # manages user interaction with the scraper
+
   class Launcher
-    attr_accessor :input_output, :scraper, :category
+    attr_accessor :input_output, :scraper
 
     def does_user_wants_to_quit?
       self.input_output.say "Do you want to continue viewing deals? (y/n)".colorize(:blue)

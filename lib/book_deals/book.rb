@@ -1,4 +1,6 @@
 module BookDeals
+  # book on the deal
+  
   class Book
     attr_accessor :title, :author, :description, :deal, :categories
 

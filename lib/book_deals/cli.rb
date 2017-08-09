@@ -1,4 +1,6 @@
 module BookDeals
+  # manages program's input/output
+
   class CLI
     def ask
       puts "\n"

@@ -1,6 +1,7 @@
 module BookDeals
-  class Scraper
+  # builds models from goodreads
 
+  class Scraper
     HOME_URL = "https://www.goodreads.com"
     BOOK_DEALS_URL = HOME_URL + "/ebook-deals"
     HOME_PAGE_HTML_ELEMENTS = ".gr-dealsCategoryExplorer .u-unstyledListItem li a"
