@@ -41,7 +41,7 @@ module BookDeals
 
         deal = Deal.new(price, original_price, expires_in)
         title = html_element.css(DEALS_HTML_ELEMENT_TITLE).text
-        purchase_url = html_element.css(DEALS_PURCHASE_URL_HTML_ELEMENTS).attr("href")
+        purchase_url = HOME_URL + html_element.css(DEALS_PURCHASE_URL_HTML_ELEMENTS).attr("href")
         author = html_element.css(DEALS_HTML_ELEMENT_AUTHOR).text
         description = html_element.css(DEALS_HTML_ELEMENT_DESCRIPTION).text
 

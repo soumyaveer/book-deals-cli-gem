@@ -2,11 +2,12 @@ module BookDeals
   # book on the deal
 
   class Book
-    attr_accessor :title, :author, :description, :deal, :categories
+    attr_accessor :title, :author, :description, :deal, :purchase_url, :categories
 
-    def initialize(deal, title, author, description = nil)
+    def initialize(deal, title, author, purchase_url description = nil)
       self.title = title
       self.author = author
+      self.purchase_url = purchase_url
       self.description = description
       self.categories = []
       self.deal = deal
