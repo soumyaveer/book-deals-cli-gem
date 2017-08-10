@@ -11,4 +11,4 @@ require "book_deals"
 # Pry.start
 
 require "irb"
-IRB.start
+IRB.start(__FILE__)
