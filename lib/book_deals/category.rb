@@ -1,4 +1,6 @@
 module BookDeals
+  # category is a collection of books
+
   class Category
     attr_accessor :name, :url, :books
 

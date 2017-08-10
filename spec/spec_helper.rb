@@ -1,7 +1,6 @@
 require "bundler/setup"
 require "book_deals"
-require_relative "./book_deals/cli_spec"
-require_relative "../lib/book_deals/cli"
+require_relative "../lib/book_deals/scraper"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
