@@ -35,7 +35,7 @@ module BookDeals
     end
 
     def greet_user
-      self.input_output.say "Welcome to Book Deals!!".colorize(:green)
+      self.input_output.say "Welcome to BookDeals!!".colorize(:green)
       self.input_output.say "=======================".colorize(:green)
     end
 
@@ -70,13 +70,13 @@ module BookDeals
         @selected_category = self.scraper.scrape_deals_from_category_page(category)
         self.display_deals
       else
-       self.wrong_choice_selection
+       self.wrong_choice_selection(number_of_categories)
       end
     end
 
-    def wrong_choice_selection
+    def wrong_choice_selection(number_of_categories)
       self.input_output.say "The category selected is not present!".colorize(:red)
-      self.input_output.say "Please select from options 1 to #{number_of_categories}".colorize(:red)
+      self.input_output.say "Please select from options 1 to #{number_of_categories}:".colorize(:red)
       self.display_menu
       self.select_category
     end
