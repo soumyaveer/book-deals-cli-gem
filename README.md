@@ -22,11 +22,11 @@ Or install it yourself as:
 
 ## Usage
 
-Type the name of the gem in Command Line User Interface to execute.
+To execute in Command Line User Interface, enter the command:
 
 ```ruby
 
-$ book_deals
+$ book-deals
 
 ```
 
