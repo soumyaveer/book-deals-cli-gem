@@ -1,6 +1,6 @@
 # BookDeals
 
-Displays the current **Goodreads** ebook deals.
+Displays the book deals from Goodreads website.
 
 ## Installation
 
@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
-Type the gem name in Command Line User Interface to execute.
+Type the name of the gem in Command Line User Interface to execute.
 
 ```ruby
 
