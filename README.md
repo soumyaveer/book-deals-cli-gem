@@ -8,7 +8,7 @@ Add this line to your application's Gemfile:
 
 ```ruby
 
-gem 'book_deals'
+gem 'book-deals'
 
 ```
 
@@ -18,7 +18,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install book_deals
+    $ gem install book-deals
 
 ## Usage
 
