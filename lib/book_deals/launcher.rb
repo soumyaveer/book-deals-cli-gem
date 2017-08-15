@@ -1,3 +1,5 @@
+require 'pry'
+
 module BookDeals
   # manages user interaction with the scraper
 
@@ -13,8 +15,7 @@ module BookDeals
     def display_menu
       self.input_output.say "Select a Category to see the deals:".colorize(:blue)
       @categories = self.scraper.scrape_categories_from_home_page
-      @categories.each_with_index do |category, index|
-        category_number = index + 1
+      @categories.each.with_index(1) do |category, category_number|
         self.input_output.say "#{category_number}. #{category.name} (Press #{category_number} to see #{category.name})"
       end
     end
@@ -52,8 +53,8 @@ module BookDeals
     end
 
     def start
+      self.greet_user
       loop do
-        self.greet_user
         self.display_menu
         self.select_category
         break if self.does_user_wants_to_quit?

@@ -8,9 +8,4 @@ require_relative "./book_deals/deal"
 require "colorize"
 require "nokogiri"
 require "open-uri"
-
-begin
-  require "pry"
-rescue LoadError
-  # ignore exception as in production environment
-end
+require "pry"

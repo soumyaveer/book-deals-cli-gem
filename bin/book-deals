@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
 require "bundler/setup"
-require "book_deals"
+require_relative  "../lib/book_deals"
 
 BookDeals::Launcher.new.start
